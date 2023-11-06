@@ -1,0 +1,132 @@
+/* CSS VARIABLES */
+
+:root {
+
+    /* Typography */
+
+    --ff-Rubik: 'Rubik', sans-serif;
+
+    --fs-Body: 1.600rem;
+    /* Colors */
+    /* Lengths */
+
+    --width-Container: 37.500rem;
+    --height-Container: 93.600rem;
+
+    --width-Smartphone-Screen: 24.700rem;
+    --height-Smartphone-Screen: 50.500rem;
+
+    --width-Screen-Top: 100%;
+    --height-Screen-Top: 6.600rem;
+
+    --width-Dynamic-Display: 12.900rem;
+    --height-Dynamic-Display: 1.800rem;
+
+    /* Gapping */
+    /* Padding */
+
+    --pd-Top-Column-One: 6.400rem;
+    --pd-Bottom-Column-One: 6.400rem;
+    --pd-Left-Column-One: 6.400rem;
+    --pd-Right-Column-One: 6.400rem;
+
+    /* Borders */
+
+    --border-Smartphone-Block: 1.100rem solid;
+    --border-Smartphone-Inline: 1.000rem solid;
+
+    /* Margins */
+    /* Radius */
+
+    --radius-Smartphone: 2.800rem;
+    --radius-Smartphone-Top: 
+        1.700rem 1.700rem 
+        0.500rem 0.500rem
+    ;
+    --radius-Dynamic-Display: 
+        0.000rem 0.000rem 
+        1.200rem 1.200rem
+    ;
+}
+
+/* REST DEFAULT STYLES */
+
+html {
+    font-size: 10px;
+    font-family: var(--ff-Rubik);
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 0.1px solid; */
+}
+
+body {
+    font-size: var(--fs-Body);
+}
+
+/* REUSABLE STYLES */
+
+
+/* LAYOUT STYLES */
+
+.container {
+    display: grid;
+    width: var(--width-Container);
+    height: var(--height-Container);
+    margin: auto;
+}
+
+.column__one {
+    padding-block: 
+        var(--pd-Top-Column-One)
+        var(--pd-Bottom-Column-One)
+    ;
+    padding-inline: 
+        var(--pd-Left-Column-One)
+        var(--pd-Right-Column-One)
+    ;
+}
+
+.smartphone__screen {
+    display: grid;
+    width: var(--width-Smartphone-Screen);
+    height: var(--height-Smartphone-Screen);
+    border-block: var(--border-Smartphone-Block);
+    border-inline: var(--border-Smartphone-Inline);
+    border-radius: var(--radius-Smartphone);
+}
+
+.screen__top {
+    position: relative;
+    display: grid;
+    width: var(--width-Screen-Top);
+    height: var(--height-Screen-Top);
+    background-color: blueviolet;
+    border-radius: var(--radius-Smartphone-Top);
+}
+
+.screen__top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: var(--width-Dynamic-Display);
+    height: var(--height-Dynamic-Display);
+    background-color: antiquewhite;
+    border-radius: var(--radius-Dynamic-Display);
+}
+
+/* FOOTER STYLES */
