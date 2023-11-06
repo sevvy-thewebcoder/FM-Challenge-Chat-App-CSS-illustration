@@ -7,7 +7,35 @@
     --ff-Rubik: 'Rubik', sans-serif;
 
     --fs-Body: 1.600rem;
+
     /* Colors */
+    
+    --color-Title: hsl(271, 36%, 24%);
+    --color-Desc: hsl(270, 7%, 64%);
+    --color-Text-Left: hsl(276, 55%, 52%);
+    --color-Text-Right: hsl(271, 15%, 43%);
+    --color-Pale-Violet: hsl(276, 100%, 81%);
+    --color-Placehoder-Text: hsl(206, 6%, 79%);
+
+    --color-White: hsl(0, 0%, 100%);
+    --color-app-background: hsl(270, 20%, 96%);
+    --color-Submit-Button-Background: hsl(271, 36%, 24%);
+    --color-Radio-Button-Outline: hsl(289, 100%, 72%);
+
+    --color-Light-Magenta: hsl(293, 100%, 63%);
+    --color-Light-Violet: hsl(264, 100%, 61%);
+
+    --gradient-Color-01: 
+        to right,
+        var(--color-Light-Violet),
+        var(--color-Light-Magenta) 
+    ;
+    --gradient-Color-02: 
+        to right,
+        var(--color-Light-Magenta), 
+        var(--color-Light-Violet)
+    ;
+
     /* Lengths */
 
     --width-Container: 37.500rem;
@@ -19,10 +47,28 @@
     --width-Screen-Top: 100%;
     --height-Screen-Top: 6.600rem;
 
+    --width-Screen-Center: 100%;
+    --height-Screen-Center: 36.300rem;
+
+    --width-Screen-Bottom: 100%;
+    --height-Screen-Bottom: 5.400rem;
+
     --width-Dynamic-Display: 12.900rem;
     --height-Dynamic-Display: 1.800rem;
 
+    --width-Price-Option: 16.000rem;
+    --height-Price-Option: 3.200rem;
+
+    --width-Form-Input-Wrapper: 21.300rem;
+    --height-Form-Input-Wrapper: 3.400rem;
+
+    --width-Form-Send-Button: 2.400rem;
+    --height-Form-Send-Button: 2.400rem;
+
     /* Gapping */
+
+    --gap-Message: 0.800rem;
+
     /* Padding */
 
     --pd-Top-Column-One: 6.400rem;
@@ -30,15 +76,29 @@
     --pd-Left-Column-One: 6.400rem;
     --pd-Right-Column-One: 6.400rem;
 
+    --pd-Inline-Screen-Chat-Wrapper: 0.700rem;
+    --pd-Top-Screen-Chat-Wrapper: 1.100rem;
+    --pd-Bottom-Screen-Chat-Wrapper: 0.600rem;
+
+    --pd-Block-Form: 1.000rem;
+
+    --pd-Box-Form-Input-Wrapper: 0.500rem;
+
     /* Borders */
 
-    --border-Smartphone-Block: 1.100rem solid;
-    --border-Smartphone-Inline: 1.000rem solid;
+    --border-Smartphone-Block: 
+        1.100rem solid var(--color-White)
+    ;
+    --border-Smartphone-Inline: 
+        1.000rem solid var(--color-White)
+    ;
 
     /* Margins */
     /* Radius */
 
     --radius-Smartphone: 2.800rem;
+    --radius-Form-Input-Wrapper: 2.000rem;
+    --radius-Send-Button: 5.000rem;
     --radius-Smartphone-Top: 
         1.700rem 1.700rem 
         0.500rem 0.500rem
@@ -46,6 +106,14 @@
     --radius-Dynamic-Display: 
         0.000rem 0.000rem 
         1.200rem 1.200rem
+    ;
+    --radius-Message-Received: 
+        1.000rem 1.000rem 
+        1.000rem 0.500rem
+    ;
+    --radius-Message-Sent: 
+        1.000rem 1.000rem 
+        0.500rem 1.000rem
     ;
 }
 
@@ -75,8 +143,21 @@ body {
     font-size: var(--fs-Body);
 }
 
+input,
+button {
+    outline: none;
+    border: none;
+}
+
 /* REUSABLE STYLES */
 
+.message__received {
+    border-radius: var(--radius-Message-Received);
+}
+
+.message__sent {
+    border-radius: var(--radius-Message-Sent);
+}
 
 /* LAYOUT STYLES */
 
@@ -85,9 +166,12 @@ body {
     width: var(--width-Container);
     height: var(--height-Container);
     margin: auto;
+    background-color: var(--color-app-background);
 }
 
 .column__one {
+    display: grid;
+    position: relative;
     padding-block: 
         var(--pd-Top-Column-One)
         var(--pd-Bottom-Column-One)
@@ -99,6 +183,7 @@ body {
 }
 
 .smartphone__screen {
+    position: relative;
     display: grid;
     width: var(--width-Smartphone-Screen);
     height: var(--height-Smartphone-Screen);
@@ -112,8 +197,13 @@ body {
     display: grid;
     width: var(--width-Screen-Top);
     height: var(--height-Screen-Top);
-    background-color: blueviolet;
     border-radius: var(--radius-Smartphone-Top);
+    background-color: blueviolet;
+    background: 
+        linear-gradient(
+            var(--gradient-Color-01)
+        )
+    ;
 }
 
 .screen__top::before {
@@ -125,8 +215,81 @@ body {
     margin-inline: auto;
     width: var(--width-Dynamic-Display);
     height: var(--height-Dynamic-Display);
-    background-color: antiquewhite;
     border-radius: var(--radius-Dynamic-Display);
+    background-color: var(--color-White);
+    z-index: 5;
+}
+
+.screen__center {
+    display: grid;
+    width: var(--width-Screen-Center);
+    height: var(--height-Screen-Center);
+    font-size: 1rem;
+    padding-block: 
+        var(--pd-Top-Screen-Chat-Wrapper)
+        var(--pd-Bottom-Screen-Chat-Wrapper)
+    ;
+    padding-inline: 
+        var(--pd-Inline-Screen-Chat-Wrapper)
+    ;
+}
+
+.content__bottom {
+    align-self: self-end;
+    display: grid;
+    gap: var(--gap-Message);
+}
+
+.price__option {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-content: center;
+    width: var(--width-Price-Option);
+    height: var(--height-Price-Option);
+    background:
+        linear-gradient(
+            var(--gradient-Color-02)
+        )
+    ;
+}
+
+.price__option > p {
+    font-size: 1rem;
+}
+
+.price__option > h2 {
+    font-size: 1rem;
+}
+
+.screen__bottom {
+    display: grid;
+    align-self: self-end;
+    width: var(--width-Screen-Bottom);
+    height: var(--height-Screen-Bottom);
+    padding-block: var(--pd-Block-Form);
+}
+
+.form__input_wrapper {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    width: var(--width-Form-Input-Wrapper);
+    height: var(--height-Form-Input-Wrapper);
+    padding: var(--pd-Box-Form-Input-Wrapper);
+    margin-inline: auto;
+    border-radius: var(--radius-Form-Input-Wrapper);
+    background-color: var(--color-White);
+}
+
+.form__input_wrapper > input {
+    text-indent: 1.400rem;
+}
+
+.form__input_wrapper > button {
+    width: var(--width-Form-Send-Button);
+    height: var(--height-Form-Send-Button);
+    border-radius: var(--radius-Send-Button);
+    background-color: var(--color-Submit-Button-Background);
 }
 
 /* FOOTER STYLES */
